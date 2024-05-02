@@ -290,11 +290,11 @@ st.pyplot(fig)
 
 col = st.selectbox("select a column", df_2017.columns.tolist()[2:])   
 
-fig = px.bar(df_2017, x=df_2017.country, y=col)
+fig = px.bar(df_2017, x=col, y=df_2017.country)
 st.plotly_chart(fig)
 
 value = st.selectbox("select a column to summarize", df_1.columns.tolist()[2:])
 years_wise_df = pd.pivot_table(df_1, index='country', columns='year', values=value)
 st.dataframe(years_wise_df)
-fig= px.histogram(years_wise_df, x=years_wise_df.index, y=sel_year)
+fig= px.histogram(years_wise_df, x=sel_year, y=years_wise_df.index)
 st.plotly_chart(fig)

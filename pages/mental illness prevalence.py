@@ -7,6 +7,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 from plotly.subplots import make_subplots
 import seaborn as sns 
+import altair as alt
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -58,8 +59,66 @@ st.header("visualization")
 
 c1, c2 = st.columns(2)
 x = c1.selectbox("Select a numerical column", num_cols, key='x1')
-y = c2.selectbox("Select a numerical column", num_cols, key='y1')
+y = c2.selectbox("Select a categorical column", cat_cols, key='y1')
 fig = px.scatter(df, x=x, y=y)
 fig2 = px.histogram(df, x=x, y=y,)
 c1.plotly_chart(fig, use_container_width=True)
 c2.plotly_chart(fig2, use_container_width=True)
+
+st.header("Eating disorder")
+c3= st.columns(1)
+c3 = (
+   alt.Chart(df)
+   .mark_bar()
+   .encode(x="Eating disorder", y="Entity")
+)
+
+st.altair_chart(c3, use_container_width=True)
+
+st.header("Anxiety")
+c2= st.columns(1)
+c2=(
+   alt.Chart(df)
+   .mark_bar()
+   .encode(x="Anxiety", y="Entity")
+)
+
+st.altair_chart(c2, use_container_width=True)
+
+st.header("Bipolar disorder")
+c1=st.columns(1)
+c1=(
+   alt.Chart(df)
+   .mark_bar()
+   .encode(x="Bipolar disorder", y="Entity")
+)
+
+st.altair_chart(c1, use_container_width=True)
+
+st.header("Depression")
+c1=st.columns(1)
+c1=(
+   alt.Chart(df)
+   .mark_bar()
+   .encode(x="Depression", y="Entity")
+)
+
+st.altair_chart(c1, use_container_width=True)
+
+st.header("Schizophrenia")
+c2=st.columns(1)
+c2=(
+   alt.Chart(df)
+   .mark_bar()
+   .encode(x="Schizophrenia", y="Entity")
+)
+
+st.altair_chart(c2, use_container_width=True)
+
+
+
+
+
+
+
+
